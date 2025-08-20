@@ -1,11 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalogo</title>
+    <link rel="stylesheet" href="productos.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=filter_alt"
+    />
+  </head>
+  <body style="position: relative">
+    <!--Agregar Navbar -->
+    <div class="hero">
+      <h1 class="hero-title">Nuestros Productos</h1>
+      <p class="hero-subtitle">
+        Descubre nuestra coleccion completa de muebles premium para cada espacio
+        de tu hogar
+      </p>
+    </div>
+    <main class="productos">
+      <div class="productos-vista">
+        <section class="filtros">
+          <h3><span class="material-symbols-outlined"> &#xef4f </span>Filtros</h3>
+          <div class="filtros-menu">
+            <div class="categoria">
+              <h4>Categoria</h4>
+              <ul>
+                <li class="active-filtro">Todos</li>
+                <li>Sala</li>
+                <li>Comedor</li>
+                <li>Dormitorio</li>
+                <li>Oficina</li>
+              </ul>
+            </div>
+            <div class="precios">
+              <h4>Precio</h4>
+              <ul>
+                <li class="active-filtro">Todos</li>
+                <li>$0-$500</li>
+                <li>$500-$1000</li>
+                <li>$1000-$1500</li>
+                <li>$1500-$2000</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <p class="cantidad-productos">Mostrando 12 productos</p>
+        <section class="productos-list" id="productos-list">
+        </section>
+      </div>
+    </main>
+    <!-- Agregar Footer -->
+
+    <script src="productos.js"></script>
+  </body>
 </html>
