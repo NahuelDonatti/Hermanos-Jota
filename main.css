@@ -1,0 +1,120 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.detalle-container{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.detalle-img{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 80vw;
+    border-radius: .5rem;
+}
+
+.detalle-descripcion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 80vw;
+    border-radius: .5rem;
+    padding: 10px;
+}
+
+.detalle-cantidad{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.detalle-contador{
+    display: flex;
+    align-items: center;
+  width: fit-content;
+    border: 1px solid #D9D9D9;
+     border-radius: 6px;
+  overflow: hidden;
+}
+.detalle-contador button {
+  all: unset;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
+
+
+
+.detalle-contador p {
+  margin: 0;
+  width: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.detalle-button{
+    all:unset;
+    width: 200px;
+    text-align: center;
+    border: 1px solid #D9D9D9;
+    background-color: #A0522D; 
+    padding: 5px;
+    border-radius: .5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.detalle-caracteristica{
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: .5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.detalle-caracteristica h3{
+    color: #A0522D;
+    text-align: center;
+    font-weight: bold;
+}
+
+.detalle-caracteristica li::marker{
+     color: #A0522D;
+}
+
+@media(min-width: 756px){
+    .detalle-container{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .detalle-img{
+        width: 40vw;
+        height: 50vh;
+        object-fit: cover;
+    }
+    .detalle-descripcion{
+        width: 40vw;
+        height: 50vh;
+    }
+
+    .detalle-caracteristica ul{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 16px;
+    }
+}
