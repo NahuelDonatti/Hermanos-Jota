@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@400;700&display=swap');
 
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,8 +13,8 @@
     --color-verde-salvia: #87A96B;
     --color-alabastro-calido: #F5E6D3;
     --color-vara-de-oro: #D4A437;
-    --color-rosa-polvoriento: #C47A6D;    
-    --fuente-playfair:"Playfair Display", serif;    
+    --color-rosa-polvoriento: #C47A6D;
+    --fuente-playfair: "Playfair Display", serif;
     --fuente-inter: "Inter", sans-serif;
 }
 
@@ -28,7 +30,7 @@ header {
     align-items: center;
     color: var(--color-siena-tostado);
     padding: 5px 20px;
-    background-color:white;
+    background-color: white;
 }
 
 ul {
@@ -43,7 +45,7 @@ header nav a {
     color: var(--color-siena-tostado);
 }
 
-header > div {
+header>div {
     display: flex;
     gap: 15px;
 }
@@ -53,15 +55,15 @@ header > div {
 .contacto-form-header h2,
 .contacto-info h2,
 .contacto-ubicacion h2 {
-    font-family:var(--fuente-playfair);    
+    font-family: var(--fuente-playfair);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     text-align: center;
 }
 
 .contacto-titulo h1 {
-    font-size: 36px;    
-    margin-bottom: 16px;    
+    font-size: 36px;
+    margin-bottom: 16px;
 }
 
 .contacto-titulo {
@@ -82,7 +84,7 @@ header > div {
     padding: 60px 16px;
 }
 
-.contacto-card{
+.contacto-card {
     display: flex;
     flex-direction: column;
     margin: 40px 0;
@@ -100,7 +102,7 @@ header > div {
     margin-bottom: 22px;
 }
 
-.contacto-form-header h2 {    
+.contacto-form-header h2 {
     font-size: 24px;
     margin: 10px 0;
 }
@@ -113,7 +115,7 @@ header > div {
 }
 
 .contacto-form-content div {
-    flex: 1;    
+    flex: 1;
 }
 
 .contacto-form input,
@@ -126,7 +128,7 @@ header > div {
     margin: 10px 0;
     line-height: 1.5;
     outline: none;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);    
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     font-size: 14px;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -147,8 +149,9 @@ header > div {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;    
-    font-weight: 500;  /* Inter Medium */
+    gap: 8px;
+    font-weight: 500;
+    /* Inter Medium */
     text-transform: uppercase;
     letter-spacing: 0.08em;
     height: 40px;
@@ -165,18 +168,18 @@ header > div {
 }
 
 .contacto-form button:hover {
-    background-color: #76391c;  
+    background-color: #76391c;
 }
 
 /* INFO CONTACTO */
 .contacto-info h2 {
-    font-size: 20px;    
+    font-size: 20px;
 }
 
 .contacto-info address div h3 {
     display: flex;
     align-items: center;
-    gap: 5px;    
+    gap: 5px;
     margin: 5px 0;
     color: var(--color-siena-tostado);
     font-family: var(--fuente-inter);
@@ -200,53 +203,148 @@ header > div {
     width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 10px;
-    border: 0;  
+    border: 0;
 }
 
 footer {
     text-align: center;
     padding: 24px 20px;
-    background-color: var(--color-siena-tostado);    
+    background-color: var(--color-siena-tostado);
     color: white
 }
 
-.footer-info{
+.footer-info {
     border-top: 1px solid #e4c2b1;
-    border-bottom: 1px solid #e4c2b1;    
+    border-bottom: 1px solid #e4c2b1;
     padding: 20px 0;
 }
 
-.footer-info address{
+.footer-info address {
     text-align: start;
 }
 
-.footer-info address p{
-    margin: 15px;        
+.footer-info address p {
+    margin: 15px;
 }
 
-.footer-info address p span{
-    margin-left: 20px;        
+.footer-info address p span {
+    margin-left: 20px;
 }
 
-.footer-info div{
+.footer-info div {
     text-align: center;
 }
 
-footer nav ul{
+footer nav ul {
     display: flex;
-    justify-content: center;    
+    justify-content: center;
     list-style: none;
     font-weight: normal;
     margin: 20px;
 }
 
 footer nav a {
-    text-decoration: none;    
+    text-decoration: none;
     color: white;
 }
 
-.footer-nav p{    
+.footer-nav p {
     font-size: 12px;
+}
+
+/* PRODUCTO */
+
+.detalle-container{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.detalle-img{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 80vw;
+    border-radius: .5rem;
+}
+
+.detalle-descripcion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 80vw;
+    border-radius: .5rem;
+    padding: 10px;
+}
+
+.detalle-cantidad{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.detalle-contador{
+    display: flex;
+    align-items: center;
+  width: fit-content;
+    border: 1px solid #D9D9D9;
+     border-radius: 6px;
+  overflow: hidden;
+}
+.detalle-contador button {
+  all: unset;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
+
+
+
+.detalle-contador p {
+  margin: 0;
+  width: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.detalle-button{
+    all:unset;
+    width: 200px;
+    text-align: center;
+    border: 1px solid #D9D9D9;
+    background-color: #A0522D; 
+    padding: 5px;
+    border-radius: .5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.detalle-caracteristica{
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: .5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.detalle-caracteristica h3{
+    color: #A0522D;
+    text-align: center;
+    font-weight: bold;
+}
+
+.detalle-caracteristica li::marker{
+     color: #A0522D;
 }
 
 @media (min-width: 1024px) {
@@ -254,7 +352,7 @@ footer nav a {
         display: flex;
         gap: 20px;
     }
-    
+
     .contacto-form,
     .contacto-info,
     .contacto-ubicacion {
@@ -269,7 +367,7 @@ footer nav a {
     .contacto-form {
         width: 50%;
     }
-    
+
     .contacto-form-content {
         flex-direction: row;
         gap: 16px;
@@ -279,7 +377,7 @@ footer nav a {
         flex: 1;
         margin: 20px 0;
     }
-    
+
     .contacto h2 {
         font-size: 20px;
     }
@@ -292,41 +390,62 @@ footer nav a {
         font-size: 18px;
     }
 
-    .contacto-info  p {
+    .contacto-info p {
         font-size: 14px;
     }
 
     .contacto-ubicacion iframe {
         height: 450px;
-    }  
-
-    footer{
-        padding:50px;
     }
 
-    footer img{
+    footer {
+        padding: 50px;
+    }
+
+    footer img {
         width: 150px;
     }
-    
-    .footer-info{
+
+    .footer-info {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 50px 100px;
-    }    
+    }
 
-    .footer-nav{
+    .footer-nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding:5px 0;
+        padding: 5px 0;
     }
 }
 
-@media (min-width: 768px){
-    .contacto-info address {        
+@media (min-width: 768px) {
+    .contacto-info address {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;        
+        justify-content: space-between;
+    }
+
+    /* PRODUCTO */
+    .detalle-container{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .detalle-img{
+        width: 40vw;
+        height: 50vh;
+        object-fit: cover;
+    }
+    .detalle-descripcion{
+        width: 40vw;
+        height: 50vh;
+    }
+
+    .detalle-caracteristica ul{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 16px;
     }
 }
