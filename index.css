@@ -342,6 +342,37 @@ header>div {
     border: 0;
 }
 
+/* Contenedor de las notificaciones */
+#notificacion {
+    position: fixed;
+    bottom: 20px;
+    left: 0px;
+    z-index: 9999;
+    text-align: center;
+    padding: 5px;
+}
+
+/* Estilo del toast */
+.toast {
+    background: var(--color-siena-tostado);
+    color: white;
+    font-weight: bold;
+    padding: 14px 20px;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+    font-size: 15px;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Cuando se muestra */
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 footer {
     text-align: center;
     padding: 24px 20px;
