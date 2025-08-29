@@ -1,0 +1,325 @@
+/* variables */
+
+:root{
+    --primario: #F5E6D3;
+    --secundario: #A0522D;
+}
+
+/* reset */
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+li{
+    list-style-type: none;
+}
+
+/* fonts */
+
+*{
+    font-family: 'Playfair Display';
+ }
+
+/* estilos base */
+
+.site-nav{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.logo img{
+    width: 20vw;
+    height: auto;
+    max-width: 40px;
+}
+
+.site-nav ul{
+    list-style: none;
+    display: flex;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.site-nav ul li a{
+    display: block;
+    color: var(--secundario);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.hero{
+    height: 40vh;
+    width: 100%;
+    background: url('/img/hero_hermanosJota.png') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+
+}
+
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1{
+    letter-spacing: 0.3em;
+}
+
+.hero-content h2{
+    margin-top: 0.7em;
+}
+
+.hero-content h4{
+    font-weight: 100;
+    margin-top: 1em;
+}
+
+#btn-ver-productos {
+    background-color: var(--secundario);
+    color: white;
+    padding: 12px 42px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 2em;
+}
+
+#btn-ver-productos:hover {
+    background-color: #e55b00;
+}
+
+
+/* DESTACADOS */
+
+.destacados{
+    background-color: var(--primario);
+    display: flex;
+    align-items:center;
+    text-align: center;
+    color: var(--secundario);
+    position: relative;
+    flex-direction: column;
+}
+
+.destacados h2{
+    letter-spacing: 0.1em;
+    margin-top: 1em
+}
+
+.destacados h5{
+    font-weight: 100;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.grid li{
+    background-color: white;
+    border-radius: 2em;
+    width: 80%;
+    margin-bottom: 2em;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    flex-direction: column;
+}
+
+.grid li img{
+    width: 80%;
+}
+
+.grid li h3{
+    color: #D4A437;
+    align-self: flex-start;
+}
+
+.grid li h4{
+    align-self: flex-start;
+    margin-bottom: 1em;
+}
+
+.btn-comprar{
+    background-color: var(--secundario);
+    color: white;
+    border: 0;
+    font-weight: 100;
+    padding: 0.4em 2em;
+    border-radius: 0.5em;
+    align-self: flex-end;
+    position: relative;
+    top: -1.7em;
+}
+
+#btn-ver-todos{
+    background-color: #87A96B;
+    color: white;
+    border: 0;
+    border-radius: 0.2em;
+    padding: 0.7em 2em;
+    margin-bottom: 1em;
+}
+
+/* estilos desktop */
+
+@media screen and (min-width: 1200px) {
+
+
+
+body{
+}
+
+/* NAVBAR */
+
+.site-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 0px 20px;
+    height: 60px;
+}
+
+
+.site-nav ul{
+    list-style: none;
+    display: flex;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.site-nav ul li{
+   
+}
+
+.site-nav ul li a{
+    display: block;
+    color: var(--secundario);
+    text-align: center;
+    padding: 1em 0.5em;
+    text-decoration: none;
+}
+
+.site-nav .logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* HEROBANNER */
+
+.hero{
+    height: 50vh;
+    background: url('/img/hero_hermanosJota.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    margin-top: -2em;
+}
+
+.hero-content h1{
+    font-size: 3em;
+}
+
+.hero-content h2{
+    font-size: 2.5em;
+}
+
+.hero h4 {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+#btn-ver-productos {
+    background-color: var(--secundario);
+    color: white;
+    padding: 12px 42px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 1em;
+}
+
+#btn-ver-productos:hover {
+    background-color: #e55b00;
+}
+
+
+/* DESTACADOS */
+
+.destacados{
+    background-color: var(--primario);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: var(--secundario);
+    position: relative;
+}
+
+
+.btn-comprar{
+    padding: 0.6em 2em;
+    top: -2.3em
+}
+
+.grid{
+    flex-direction: row;
+}
+
+.grid li{
+    margin: 0 2em;
+}
+
+.grid li h3{
+    font-size: 1.5em;
+}
+
+#btn-ver-todos{
+    margin-top: 2em;
+}
+
+}
