@@ -130,7 +130,7 @@ header>div {
 .hero {
     height: 40vh;
     width: 100%;
-    background: url('/img/hero_hermanosJota.png') no-repeat center center/cover;
+    background: url('assets/hero_hermanosJota.png') no-repeat center center/cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -473,6 +473,7 @@ footer nav a {
     margin: 0 auto;
     border-radius: .5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-bottom: .5rem;
 }
 
 .detalle-caracteristica h3 {
@@ -488,7 +489,7 @@ footer nav a {
 /* PRODUCTOS */
 /* productos html */
 
-.hero {
+.hero-productos {
     height: auto;
     min-height: 45vh;
     background-color: var(--warm-alabaster);
@@ -917,7 +918,6 @@ footer nav a {
 
     .hero {
         height: 50vh;
-        background: url('/img/hero_hermanosJota.png') no-repeat center center/cover;
         display: flex;
         justify-content: center;
         align-items: center;
