@@ -85,6 +85,15 @@ const productos = [
   },
 ];
 
+//peticion asincrona
+function obtenerProductos() {
+  return new Promise((res) => {
+    setTimeout(() => {
+      res(productos);
+    }, 500);
+  });
+}
+
 function cargarListaProductos(lista) {
   const contenedor = document.getElementById("productos-list");
   const p = document.querySelector(".cantidad-productos");
@@ -154,8 +163,17 @@ agregarFiltros(
 );
 agregarFiltros("precio-filtro", "filtroByPrecio", listarLosProductosFiltrados);
 
-function listarLosProductosFiltrados() {
-  let listaDeProductosFiltrada = productos.filter((p) => {
+async function listarLosProductosFiltrados() {
+  const contenedor = document.getElementById("productos-list");
+
+  //renderizar mensaje mientras carga la lista
+  if (contenedor) {
+    contenedor.innerHTML = `<div style="margin:0 auto">Cargando lista...<div>`;
+  }
+
+  const productosCargados = await obtenerProductos();
+
+  let listaDeProductosFiltrada = productosCargados.filter((p) => {
     // filtrar por categoria
     const categoria =
       filtroByCategoria === "todos" || p.categoria === filtroByCategoria;
