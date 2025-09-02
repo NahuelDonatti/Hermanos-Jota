@@ -20,16 +20,7 @@
   --color-vara-de-oro: #d4a437;
   --color-rosa-polvoriento: #c47a6d;
   --fuente-playfair: "Playfair Display", serif;
-  --fuente-inter: "Inter", sans-serif;
-  --burnt-sienna: #a0522d;
-  --sage-green: #87a96b;
-  --warm-alabaster: #f5e6d3;
-  --goldenrod: #d4a437;
-  --dusty-rose: #c47a6d;
-  --dark-wood: #3e2723;
-  --light-grey: #f5f5f5;
-  --primario: #f5e6d3;
-  --secundario: #a0522d;
+  --fuente-inter: "Inter", sans-serif;  
 }
 
 body {
@@ -63,12 +54,6 @@ li {
   list-style-type: none;
 }
 
-.contacto-body {
-  font-family: "Inter", sans-serif;
-  line-height: 1.6;
-  font-size: 14px;
-}
-
 header {
   display: flex;
   justify-content: space-between;
@@ -90,40 +75,71 @@ header nav a {
   color: var(--color-siena-tostado);
 }
 
-header > div {
+header>div {
   display: flex;
+  align-items: center;
   gap: 15px;
 }
 
-/* estilos base */
-
-.site-nav {
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+/* Menú hamburguesa solo para links en mobile */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
 }
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 70vw;
+  max-width: 320px;
+  background: white;
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.15);
+  border-radius: 10px 0 0 10px;
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  padding: 20px 20px 0 0;
+}
+
+.mobile-menu ul {
+  flex-direction: column;
+  gap: 0;
+  padding: 20px 30px;
+}
+
+.mobile-menu ul li {
+  margin: 10px 0;
+}
+
+.mobile-menu ul li a {
+  color: var(--color-siena-tostado);
+  font-size: 1.2em;
+  text-align: left;
+}
+
+.close-menu {
+  text-align: end;
+}
+
+.btn-cerrar-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+/* estilos base */
 
 .logo img {
   width: 20vw;
   height: auto;
   max-width: 40px;
-}
-
-.site-nav ul {
-  list-style: none;
-  display: flex;
-  margin: 0 auto;
-  padding: 0;
-}
-
-.site-nav ul li a {
-  display: block;
-  color: var(--secundario);
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
 }
 
 .hero {
@@ -168,7 +184,7 @@ header > div {
 }
 
 #btn-ver-productos {
-  background-color: var(--secundario);
+  background-color: var(--color-siena-tostado);
   color: white;
   padding: 12px 42px;
   text-decoration: none;
@@ -183,7 +199,6 @@ header > div {
 }
 
 /* TITULOS */
-.contacto-titulo h1,
 .contacto-form-header h2,
 .contacto-info h2,
 .contacto-ubicacion h2 {
@@ -191,23 +206,6 @@ header > div {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   text-align: center;
-}
-
-.contacto-titulo h1 {
-  font-size: 36px;
-  margin-bottom: 16px;
-}
-
-.contacto-titulo {
-  background-color: var(--color-alabastro-calido);
-  color: var(--color-siena-tostado);
-  text-align: center;
-  padding: 64px 16px;
-}
-
-.contacto-titulo p {
-  font-family: var(--fuente-inter);
-  font-weight: 400;
 }
 
 /* CONTACTO GENERAL */
@@ -485,7 +483,7 @@ footer nav a {
 .hero-productos {
   height: auto;
   min-height: 45vh;
-  background-color: var(--warm-alabaster);
+  background-color: var(--color-alabastro-calido);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -495,7 +493,7 @@ footer nav a {
 .hero-title,
 .hero-subtitle {
   text-align: center;
-  color: var(--burnt-sienna);
+  color: var(--color-siena-tostado);
   margin: 5px 0;
 }
 
@@ -579,8 +577,8 @@ footer nav a {
 }
 
 .active-filtro {
-  background-color: var(--warm-alabaster);
-  color: var(--burnt-sienna);
+  background-color: var(--color-alabastro-calido);
+  color: var(--color-siena-tostado);
   border-radius: 5px;
   font-weight: 700;
 }
@@ -630,21 +628,21 @@ footer nav a {
 .productos-descripcion h3 {
   text-align: left;
   width: 100%;
-  color: var(--burnt-sienna);
+  color: var(--color-siena-tostado);
   margin-bottom: 10px;
 }
 
 .productos-descripcion p {
   font-weight: bold;
   font-size: 24px;
-  color: var(--goldenrod);
+  color: var(--color-vara-de-oro);
   align-self: end;
 }
 
 .productos-descripcion button {
   align-self: end;
   padding: 8px 12px;
-  background-color: var(--burnt-sienna);
+  background-color: var(--color-siena-tostado);
   color: #fff;
   border-radius: 8px;
   border: none;
@@ -653,11 +651,12 @@ footer nav a {
 /* DESTACADOS */
 
 .destacados {
-  background-color: var(--primario);
+  background-color: var(--color-alabastro-calido);
   display: flex;
   align-items: center;
   text-align: center;
-  color: var(--secundario);
+  color: var(--color-siena-tostado);
+  padding: 40px 0;
   position: relative;
   flex-direction: column;
 }
@@ -706,7 +705,7 @@ footer nav a {
 }
 
 .btn-comprar {
-  background-color: var(--secundario);
+  background-color: var(--color-siena-tostado);
   color: white;
   border: 0;
   font-weight: 100;
@@ -866,53 +865,17 @@ footer nav a {
 /* estilos desktop */
 
 @media screen and (min-width: 1200px) {
-  body {
-  }
-
-  /* NAVBAR */
-
-  .site-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: white;
-    padding: 0px 20px;
-    height: 60px;
-  }
-
-  .site-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0 auto;
-    padding: 0;
-  }
-
-  .site-nav ul li {
-  }
-
-  .site-nav ul li a {
-    display: block;
-    color: var(--secundario);
-    text-align: center;
-    padding: 1em 0.5em;
-    text-decoration: none;
-  }
-
-  .site-nav .logo img {
-    height: 40px;
-    width: auto;
-  }
-
   /* HEROBANNER */
 
   .hero {
-    height: 50vh;
+    height: 85vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: white;
     position: relative;
+    padding: 0 200px;
   }
 
   .hero::after {
@@ -945,7 +908,7 @@ footer nav a {
   }
 
   #btn-ver-productos {
-    background-color: var(--secundario);
+    background-color: var(--color-siena-tostado);
     color: white;
     padding: 12px 42px;
     text-decoration: none;
@@ -962,11 +925,12 @@ footer nav a {
   /* DESTACADOS */
 
   .destacados {
-    background-color: var(--primario);
+    background-color: var(--color-alabastro-calido);
     display: flex;
     justify-content: center;
+    padding: 50px;
     text-align: center;
-    color: var(--secundario);
+    color: var(--color-siena-tostado);
     position: relative;
   }
 
@@ -989,5 +953,25 @@ footer nav a {
 
   #btn-ver-todos {
     margin-top: 2em;
+  }
+}
+
+@media (max-width: 900px) {
+  header nav ul {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .mobile-menu {
+    width: 50vw;
+    display: none;
+  }
+
+  .mobile-menu.open {
+    display: block;
+    transform: translateX(0);
   }
 }
