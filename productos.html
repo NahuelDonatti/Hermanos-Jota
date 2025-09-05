@@ -28,17 +28,27 @@
             </ul>
         </nav>
 
-        <div>            
-            <svg width="25" height="25" viewBox="0 0 1024 1024" fill="#A0522D" class="icon" version="1.1"
-                xmlns="http://www.w3.org/2000/svg" stroke="#A0522D">
+        <div>
+            <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_bgCarrier" stroke-width="0" />
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
                 <g id="SVGRepo_iconCarrier">
-                    <path
-                        d="M800.8 952c-31.2 0-56-24.8-56-56s24.8-56 56-56 56 24.8 56 56-25.6 56-56 56z m-448 0c-31.2 0-56-24.8-56-56s24.8-56 56-56 56 24.8 56 56-25.6 56-56 56zM344 792c-42.4 0-79.2-33.6-84-76l-54.4-382.4-31.2-178.4c-2.4-19.2-19.2-35.2-37.6-35.2H96c-13.6 0-24-10.4-24-24s10.4-24 24-24h40.8c42.4 0 80 33.6 85.6 76l31.2 178.4 54.4 383.2C309.6 728 326.4 744 344 744h520c13.6 0 24 10.4 24 24s-10.4 24-24 24H344z m40-128c-12.8 0-23.2-9.6-24-22.4-0.8-6.4 1.6-12.8 5.6-17.6s10.4-8 16-8l434.4-32c19.2 0 36-15.2 38.4-33.6l50.4-288c1.6-13.6-2.4-28-10.4-36.8-5.6-6.4-12.8-9.6-21.6-9.6H320c-13.6 0-24-10.4-24-24s10.4-24 24-24h554.4c22.4 0 42.4 9.6 57.6 25.6 16.8 19.2 24.8 47.2 21.6 75.2l-50.4 288c-4.8 41.6-42.4 74.4-84 74.4l-432 32c-1.6 0.8-2.4 0.8-3.2 0.8z"
-                        fill="" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M15 10.5C15 12.9853 12.9853 15 10.5 15C8.01472 15 6 12.9853 6 10.5C6 8.01472 8.01472 6 10.5 6C12.9853 6 15 8.01472 15 10.5ZM14.1793 15.2399C13.1632 16.0297 11.8865 16.5 10.5 16.5C7.18629 16.5 4.5 13.8137 4.5 10.5C4.5 7.18629 7.18629 4.5 10.5 4.5C13.8137 4.5 16.5 7.18629 16.5 10.5C16.5 11.8865 16.0297 13.1632 15.2399 14.1792L20.0304 18.9697L18.9697 20.0303L14.1793 15.2399Z"
+                        fill="#A0522D" />
                 </g>
             </svg>
+
+            
+          <div id="icono-carrito" class="carrito-icono">
+            <svg width="20" height="20" viewBox="0 0 1024 1024" fill="#A0522D" class="icon" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" stroke="#A0522D">
+            <path
+                d="M800.8 952c-31.2 0-56-24.8-56-56s24.8-56 56-56 56 24.8 56 56-25.6 56-56 56z m-448 0c-31.2 0-56-24.8-56-56s24.8-56 56-56 56 24.8 56 56-25.6 56-56 56zM344 792c-42.4 0-79.2-33.6-84-76l-54.4-382.4-31.2-178.4c-2.4-19.2-19.2-35.2-37.6-35.2H96c-13.6 0-24-10.4-24-24s10.4-24 24-24h40.8c42.4 0 80 33.6 85.6 76l31.2 178.4 54.4 383.2C309.6 728 326.4 744 344 744h520c13.6 0 24 10.4 24 24s-10.4 24-24 24H344z m40-128c-12.8 0-23.2-9.6-24-22.4-0.8-6.4 1.6-12.8 5.6-17.6s10.4-8 16-8l434.4-32c19.2 0 36-15.2 38.4-33.6l50.4-288c1.6-13.6-2.4-28-10.4-36.8-5.6-6.4-12.8-9.6-21.6-9.6H320c-13.6 0-24-10.4-24-24s10.4-24 24-24h554.4c22.4 0 42.4 9.6 57.6 25.6 16.8 19.2 24.8 47.2 21.6 75.2l-50.4 288c-4.8 41.6-42.4 74.4-84 74.4l-432 32c-1.6 0.8-2.4 0.8-3.2 0.8z" />
+            </svg>
+           <span id="contador-carrito" class="contador-carrito">0</span>
+          </div>
+
             <!-- Menú hamburguesa-->
             <button class="menu-toggle" aria-label="Abrir menú">
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
@@ -72,7 +82,7 @@
         de tu hogar
       </p>
     </div>
-    <main class="productos">
+    <main id="lista-productos" class="productos productos-list">
       <div class="productos-vista">
         <section class="filtros">
           <h3><span class="material-symbols-outlined"> &#xef4f </span>Filtros</h3>
@@ -104,6 +114,19 @@
         </section>
       </div>
     </main>
+
+    <div id="ventana-carrito" class="ventana">
+    <div class="ventana-header">
+      <h2>Mi compra</h2>
+       <span id="cerrar-ventana" class="cerrar-btn" style="cursor:pointer">X</span>
+    </div>
+    <div class="ventana-contenido" id="items-carrito"></div>
+    <div class="ventana-footer">
+      <h3>Total: <span id="total-carrito">0</span></h3>
+      <button class="btn-pago">Ir al pago</button>
+    </div>
+    </div>
+
     <!-- Agregar Footer -->
 
      <footer>
