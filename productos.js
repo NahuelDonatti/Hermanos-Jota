@@ -177,9 +177,7 @@ const totalCarrito = document.getElementById("total-carrito");
 const cerrarVentana = document.getElementById("cerrar-ventana");
 const carrito = [];
 
-function cargarListaProductos(lista) {
-  // const contenedor = document.getElementById("productos-list");
-//peticion asincrona
+
 function obtenerProductos() {
   return new Promise((res) => {
     setTimeout(() => {
@@ -187,7 +185,8 @@ function obtenerProductos() {
     }, 500);
   });
 }
-}
+
+obtenerProductos();
 
 function cargarListaProductos(lista) {
   const contenedor = document.getElementById("productos-list");
