@@ -1,3 +1,4 @@
+// catalogo de productos
 const productos = [
   {
     id: 1,
@@ -168,6 +169,7 @@ const productos = [
     categoria: "oficina",
   },
 ];
+
 const listaProductos = document.getElementById("productos-list");
 const iconoCarrito = document.getElementById("icono-carrito");
 const contadorCarrito = document.getElementById("contador-carrito");
@@ -177,7 +179,6 @@ const totalCarrito = document.getElementById("total-carrito");
 const cerrarVentana = document.getElementById("cerrar-ventana");
 const carrito = [];
 
-
 function obtenerProductos() {
   return new Promise((res) => {
     setTimeout(() => {
@@ -185,8 +186,6 @@ function obtenerProductos() {
     }, 500);
   });
 }
-
-obtenerProductos();
 
 function cargarListaProductos(lista) {
   const contenedor = document.getElementById("productos-list");
@@ -211,6 +210,7 @@ function cargarListaProductos(lista) {
   lista.forEach((producto) => {
     const article = document.createElement("article");
     article.className = "productos-item";
+    article.dataset.id = producto.id;
     article.innerHTML = `
            <img src=${producto.img} alt="${producto.nombre}">
            <div class="productos-descripcion">
@@ -221,12 +221,98 @@ function cargarListaProductos(lista) {
             `;
     const btn = article.querySelector("button");
     btn.addEventListener("click", () => agregarAlCarrito(producto));
-    // contenedor.appendChild(article);
-    listaProductos.appendChild(article);
+    contenedor.appendChild(article);
   });
 }
 
-cargarListaProductos(productos);
+let filtroByCategoria = "todos";
+let filtroByPrecio = "todos";
+
+function agregarFiltros(selector, variable, callback) {
+  const listaDeFiltros = document.getElementById(selector);
+  if (!listaDeFiltros) return;
+
+  const itemsDeFiltro = listaDeFiltros.querySelectorAll("li");
+  itemsDeFiltro.forEach((item) => {
+    item.addEventListener("click", () => {
+      //eliminar clases css de todos los items de la lista de filtros
+      itemsDeFiltro.forEach((el) => el.classList.remove("active-filtro"));
+      //darle estilo al filtro seleccionado
+      item.classList.add("active-filtro");
+      //setear los filtros
+      if (variable === "filtroByCategoria") {
+        filtroByCategoria = item.dataset.value;
+      }
+      if (variable === "filtroByPrecio") {
+        filtroByPrecio = item.dataset.value;
+      }
+      //llama a la funcion listarLosProductosFiltrados()
+      callback();
+    });
+  });
+}
+
+agregarFiltros(
+  "categoria-filtro",
+  "filtroByCategoria",
+  listarLosProductosFiltrados
+);
+agregarFiltros("precio-filtro", "filtroByPrecio", listarLosProductosFiltrados);
+
+async function listarLosProductosFiltrados() {
+  const contenedor = document.getElementById("productos-list");
+
+  if (contenedor) {
+    contenedor.innerHTML = `<div style="margin:0 auto">Cargando lista...<div>`;
+  }
+  const productosCargados = await obtenerProductos();
+  let listaDeProductosFiltrada = productosCargados.filter((p) => {
+    // filtrar por categoria
+    const categoria =
+      filtroByCategoria === "todos" || p.categoria === filtroByCategoria;
+
+    // filtrar por precio
+    const numero = p.precio;
+    let precio = true;
+
+    switch (filtroByPrecio) {
+      case "bajo":
+        precio = numero > 0 && numero <= 500;
+        break;
+      case "medio-bajo":
+        precio = numero > 500 && numero <= 1000;
+        break;
+      case "medio-alto":
+        precio = numero > 1000 && numero <= 1500;
+        break;
+      case "alto":
+        precio = numero > 1500 && numero <= 2000;
+        break;
+      case "todos":
+      default:
+        precio = true;
+    }
+
+    return categoria && precio;
+  });
+
+  cargarListaProductos(listaDeProductosFiltrada);
+}
+
+listarLosProductosFiltrados();
+
+const productList = document.getElementById("productos-list");
+
+if (productList) {
+  document.getElementById("productos-list").addEventListener("click", (e) => {
+    const item = e.target.closest(".productos-item");
+    if (item && !e.target.classList.contains("ver-btn")) {
+      const id = item.dataset.id;
+      const params = new URLSearchParams({ id });
+      window.location.href = "producto.html?" + params;
+    }
+  });
+}
 
 function agregarAlCarrito(producto) {
   const existe = carrito.find((item) => item.nombre === producto.nombre);
@@ -276,7 +362,9 @@ function actualizarVentana() {
       <button class="btn-eliminar">Eliminar</button>
     `;
 
-    const btnMenos = itemDiv.querySelector(".cantidad-control button:first-child");
+    const btnMenos = itemDiv.querySelector(
+      ".cantidad-control button:first-child"
+    );
     const btnMas = itemDiv.querySelector(".cantidad-control button:last-child");
 
     btnMenos.addEventListener("click", () => cambiarCantidad(indice, -1));
@@ -307,103 +395,15 @@ function eliminarProducto(indice) {
 }
 
 // Abrir/Cerrar ventana
-iconoCarrito.addEventListener("click", () => {
-  ventanaCarrito.classList.add("open");
-});
-
-cerrarVentana.addEventListener("click", () => {
-  ventanaCarrito.classList.remove("open");
-});
-let filtroByCategoria = "todos";
-let filtroByPrecio = "todos";
-
-function agregarFiltros(selector, variable, callback) {
-  const listaDeFiltros = document.getElementById(selector);
-  if (!listaDeFiltros) return;
-
-  const itemsDeFiltro = listaDeFiltros.querySelectorAll("li");
-  itemsDeFiltro.forEach((item) => {
-    item.addEventListener("click", () => {
-      //eliminar clases css de todos los items de la lista de filtros
-      itemsDeFiltro.forEach((el) => el.classList.remove("active-filtro"));
-      //darle estilo al filtro seleccionado
-      item.classList.add("active-filtro");
-      //setear los filtros
-      if (variable === "filtroByCategoria") {
-        filtroByCategoria = item.dataset.value;
-      }
-      if (variable === "filtroByPrecio") {
-        filtroByPrecio = item.dataset.value;
-      }
-      //llama a la funcion listarLosProductosFiltrados()
-      callback();
-    });
+if (iconoCarrito) {
+  iconoCarrito.addEventListener("click", () => {
+    ventanaCarrito.classList.add("open");
   });
 }
 
-agregarFiltros(
-  "categoria-filtro",
-  "filtroByCategoria",
-  listarLosProductosFiltrados
-);
-agregarFiltros("precio-filtro", "filtroByPrecio", listarLosProductosFiltrados);
-
-async function listarLosProductosFiltrados() {
-  const contenedor = document.getElementById("productos-list");
-
-  //renderizar mensaje mientras carga la lista
-  if (contenedor) {
-    contenedor.innerHTML = `<div style="margin:0 auto">Cargando lista...<div>`;
-  }
-
-  const productosCargados = await obtenerProductos();
-
-  let listaDeProductosFiltrada = productosCargados.filter((p) => {
-    // filtrar por categoria
-    const categoria =
-      filtroByCategoria === "todos" || p.categoria === filtroByCategoria;
-
-    // filtrar por precio
-    const numero = p.precio;
-    let precio = true;
-
-    switch (filtroByPrecio) {
-      case "bajo":
-        precio = numero > 0 && numero <= 500;
-        break;
-      case "medio-bajo":
-        precio = numero > 500 && numero <= 1000;
-        break;
-      case "medio-alto":
-        precio = numero > 1000 && numero <= 1500;
-        break;
-      case "alto":
-        precio = numero > 1500 && numero <= 2000;
-        break;
-      case "todos":
-      default:
-        precio = true;
-    }
-
-    return categoria && precio;
-  });
-
-  cargarListaProductos(listaDeProductosFiltrada);
-}
-
-listarLosProductosFiltrados();
-
-const productList = document.getElementById("productos-list");
-
-if (productList) {
-  document.getElementById("productos-list").addEventListener("click", (e) => {
-    if (e.target.classList.contains("ver-btn")) {
-      const id = e.target.dataset.id;
-      // pasando como parametro de la Url el id
-      const params = new URLSearchParams({ id });
-      // redirreción a la página producto.html
-      window.location.href = "producto.html?" + params;
-    }
+if (cerrarVentana) {
+  cerrarVentana.addEventListener("click", () => {
+    ventanaCarrito.classList.remove("open");
   });
 }
 
@@ -413,10 +413,12 @@ let count = 1;
 function findProductById() {
   const params = new URLSearchParams(window.location.search);
   const id = Number(params.get("id"));
+  console.log(id);
 
   const product = productos.find((p) => p.id === id);
 
   const container = document.querySelector(".detalle-container");
+  if (!container) return;
 
   if (product) {
     container.innerHTML = `
