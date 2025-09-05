@@ -413,6 +413,10 @@ footer nav a {
   font-size: 12px;
 }
 
+.footer-nav ul li {
+  padding: 10px;
+}
+
 /* PRODUCTO */
 
 .detalle-container {
