@@ -9,7 +9,6 @@
 }
 
 * {
-  /* font-family: "Playfair Display"; */
   text-decoration: none;
 }
 
@@ -20,7 +19,7 @@
   --color-vara-de-oro: #d4a437;
   --color-rosa-polvoriento: #c47a6d;
   --fuente-playfair: "Playfair Display", serif;
-  --fuente-inter: "Inter", sans-serif;  
+  --fuente-inter: "Inter", sans-serif;
 }
 
 body {
@@ -75,7 +74,7 @@ header nav a {
   color: var(--color-siena-tostado);
 }
 
-header>div {
+header > div {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -477,8 +476,8 @@ footer nav a {
   color: #a0522d;
 }
 
-.product-not-found{
-    height: 40vh;
+.product-not-found {
+  height: 40vh;
 }
 
 /* PRODUCTOS */
@@ -644,13 +643,13 @@ footer nav a {
 }
 
 .productos-descripcion button {
-    align-self: end;
-    padding: 8px 12px;
-    background-color: var(--burnt-sienna);
-    color: #fff;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
+  align-self: end;
+  padding: 8px 12px;
+  background-color: var(--color-siena-tostado);
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
 }
 
 /* DESTACADOS */
@@ -730,8 +729,8 @@ footer nav a {
   margin-bottom: 1em;
 }
 
-
 /* Carrito */
+
 .ventana {
   position: fixed;
   top: 0;
@@ -754,10 +753,10 @@ footer nav a {
 }
 .contador-carrito {
   font-size: 18px;
-  color: #A0522D;
-  width: 14px;        
+  color: #a0522d;
+  width: 14px;
   text-align: center;
-  visibility: hidden; 
+  visibility: hidden;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -886,6 +885,7 @@ footer nav a {
 .btn-pago:hover {
   background-color: #76391c;
 }
+
 @media (min-width: 1024px) {
   .contacto {
     display: flex;
