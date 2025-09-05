@@ -168,7 +168,17 @@ const productos = [
     categoria: "oficina",
   },
 ];
+const listaProductos = document.getElementById("productos-list");
+const iconoCarrito = document.getElementById("icono-carrito");
+const contadorCarrito = document.getElementById("contador-carrito");
+const ventanaCarrito = document.getElementById("ventana-carrito");
+const itemsCarrito = document.getElementById("items-carrito");
+const totalCarrito = document.getElementById("total-carrito");
+const cerrarVentana = document.getElementById("cerrar-ventana");
+const carrito = [];
 
+function cargarListaProductos(lista) {
+  // const contenedor = document.getElementById("productos-list");
 //peticion asincrona
 function obtenerProductos() {
   return new Promise((res) => {
@@ -176,6 +186,7 @@ function obtenerProductos() {
       res(productos);
     }, 500);
   });
+}
 }
 
 function cargarListaProductos(lista) {
@@ -210,10 +221,101 @@ function cargarListaProductos(lista) {
              <button class="ver-btn" data-id=${producto.id}>Comprar</button>
             </div>
             `;
-    contenedor.appendChild(article);
+    const btn = article.querySelector("button");
+    btn.addEventListener("click", () => agregarAlCarrito(producto));
+    // contenedor.appendChild(article);
+    listaProductos.appendChild(article);
   });
 }
 
+cargarListaProductos(productos);
+
+function agregarAlCarrito(producto) {
+  const existe = carrito.find((item) => item.nombre === producto.nombre);
+
+  if (existe) {
+    existe.cantidad += 1;
+  } else {
+    carrito.push({ ...producto, cantidad: 1 });
+  }
+
+  actualizarContador();
+  actualizarVentana();
+}
+
+function actualizarContador() {
+  const totalUnidades = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+  contadorCarrito.textContent = totalUnidades;
+  if (totalUnidades > 0) {
+    contadorCarrito.classList.add("visible");
+  } else {
+    contadorCarrito.classList.remove("visible");
+  }
+}
+
+function actualizarVentana() {
+  itemsCarrito.innerHTML = "";
+  let total = 0;
+
+  carrito.forEach((item, indice) => {
+    total += item.precio * item.cantidad;
+
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("carrito-item");
+
+    itemDiv.innerHTML = `
+      <img src="${item.img}" alt="${item.nombre}">
+      <div class="carrito-info">
+        <strong>${item.nombre}</strong><br>
+        <small>Unitario: $${item.precio}</small><br>
+        <strong>$${item.precio * item.cantidad}</strong>
+        <div class="cantidad-control">
+          <button ${item.cantidad === 1 ? "disabled" : ""}>-</button>
+          <span>${item.cantidad}</span>
+          <button>+</button>
+        </div>
+      </div>
+      <button class="btn-eliminar">Eliminar</button>
+    `;
+
+    const btnMenos = itemDiv.querySelector(".cantidad-control button:first-child");
+    const btnMas = itemDiv.querySelector(".cantidad-control button:last-child");
+
+    btnMenos.addEventListener("click", () => cambiarCantidad(indice, -1));
+    btnMas.addEventListener("click", () => cambiarCantidad(indice, 1));
+
+    const btnEliminar = itemDiv.querySelector(".btn-eliminar");
+    btnEliminar.addEventListener("click", () => eliminarProducto(indice));
+
+    itemsCarrito.appendChild(itemDiv);
+  });
+
+  totalCarrito.textContent = `$${total}`;
+}
+
+function cambiarCantidad(indice, count) {
+  carrito[indice].cantidad += count;
+  if (carrito[indice].cantidad < 1) {
+    carrito[indice].cantidad = 1;
+  }
+  actualizarContador();
+  actualizarVentana();
+}
+
+function eliminarProducto(indice) {
+  carrito.splice(indice, 1);
+  actualizarContador();
+  actualizarVentana();
+}
+
+// Abrir/Cerrar ventana
+iconoCarrito.addEventListener("click", () => {
+  ventanaCarrito.classList.add("open");
+});
+
+cerrarVentana.addEventListener("click", () => {
+  ventanaCarrito.classList.remove("open");
+});
 let filtroByCategoria = "todos";
 let filtroByPrecio = "todos";
 
@@ -305,3 +407,67 @@ if (productList) {
     }
   });
 }
+
+/* Renderizado por id en detalle producto */
+let count = 1;
+
+function findProductById() {
+  const params = new URLSearchParams(window.location.search);
+  const id = Number(params.get("id"));
+
+  const product = productos.find((p) => p.id === id);
+
+  const container = document.querySelector(".detalle-container");
+
+  if (product) {
+    container.innerHTML = `
+      <img
+        class="detalle-img"
+        src="${product.img}"
+        alt="Imagen de ${product.nombre}"
+      />
+      <div class="detalle-descripcion">
+        <h2>${product.nombre}</h2>
+        <p>$${product.precio}</p>
+        <p>${product.descripcion}</p>
+        <div class="detalle-cantidad">
+          <p>Cantidad:</p>
+          <div class="detalle-contador">
+            <button class="btn-decrement">-</button>
+            <p class="count-display">${count}</p>
+            <button class="btn-increment">+</button>
+          </div>
+        </div>
+        <button class="detalle-button">Comprar</button>
+        
+      </div>
+      <div class="detalle-caracteristica">
+            <h3>Caracteristicas</h3>
+            <ul>
+                <li>${product.materiales}</li>
+                <li>${product.capacidad}</li>
+                <li>${product.medidas}</li>
+                <li>${product.acabado}</li>
+            </ul>
+        </div>
+    `;
+
+    const decrementBtn = container.querySelector(".btn-decrement");
+    const incrementBtn = container.querySelector(".btn-increment");
+    const countDisplay = container.querySelector(".count-display");
+
+    decrementBtn.addEventListener("click", () => {
+      if (count > 1) count--;
+      countDisplay.textContent = count;
+    });
+
+    incrementBtn.addEventListener("click", () => {
+      count++;
+      countDisplay.textContent = count;
+    });
+  } else {
+    container.innerHTML = `<p class="product-not-found">No se encontró un producto con id: ${id}</p>`;
+  }
+}
+
+findProductById();
