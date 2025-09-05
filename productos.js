@@ -201,6 +201,7 @@ function cargarListaProductos(lista) {
   lista.forEach((producto) => {
     const article = document.createElement("article");
     article.className = "productos-item";
+    article.dataset.id = producto.id;
     article.innerHTML = `
            <img src=${producto.img} alt="${producto.nombre}">
            <div class="productos-descripcion">
@@ -296,11 +297,10 @@ const productList = document.getElementById("productos-list");
 
 if (productList) {
   document.getElementById("productos-list").addEventListener("click", (e) => {
-    if (e.target.classList.contains("ver-btn")) {
-      const id = e.target.dataset.id;
-      // pasando como parametro de la Url el id
+    const item = e.target.closest(".productos-item");
+    if (item && !e.target.classList.contains("ver-btn")) {
+      const id = item.dataset.id;
       const params = new URLSearchParams({ id });
-      // redirreción a la página producto.html
       window.location.href = "producto.html?" + params;
     }
   });
