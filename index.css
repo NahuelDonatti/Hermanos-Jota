@@ -80,6 +80,16 @@ header > div {
   gap: 15px;
 }
 
+.icon-search{
+  cursor: pointer;
+}
+.input-search{
+  all:unset;
+  border: 1px solid #d9d9d9;
+  padding: 5px;
+  border-radius: .5rem;
+}
+
 /* Menú hamburguesa solo para links en mobile */
 .menu-toggle {
   display: none;
