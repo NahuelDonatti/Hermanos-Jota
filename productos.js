@@ -325,6 +325,8 @@ function findProductById() {
 
   const container = document.querySelector(".detalle-container");
 
+  if (!container) return;
+
   if (product) {
     container.innerHTML = `
       <img
@@ -477,5 +479,3 @@ if (cerrarVentana) {
     ventanaCarrito.classList.remove("open");
   });
 }
-
-
