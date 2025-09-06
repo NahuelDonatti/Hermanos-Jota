@@ -479,3 +479,19 @@ if (cerrarVentana) {
     ventanaCarrito.classList.remove("open");
   });
 }
+
+const productosContainer = document.querySelector('.grid');
+const primerosTres = productos.slice(0, 3)
+
+primerosTres.forEach(producto => {
+  const productoHTML = `
+    <li>
+      <img src="${producto.img}" alt="${producto.nombre}">
+      <h4>${producto.nombre}</h4>
+      <h3>$${producto.precio}</h3>
+      <button class="btn-comprar">Comprar</button>
+    </li>
+  `;
+  
+  productosContainer.innerHTML += productoHTML;
+});
