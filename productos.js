@@ -177,16 +177,16 @@ const ventanaCarrito = document.getElementById("ventana-carrito");
 const itemsCarrito = document.getElementById("items-carrito");
 const totalCarrito = document.getElementById("total-carrito");
 const cerrarVentana = document.getElementById("cerrar-ventana");
-const notificacion = document.querySelector('#notificacion');
+const notificacion = document.querySelector("#notificacion");
 const carrito = [];
 
 /* NOTIFICACION */
-function mostrarNotificacion(mensaje) {     
+function mostrarNotificacion(mensaje) {
   const toast = document.createElement("div");
   toast.classList.add("toast");
   toast.textContent = mensaje;
   notificacion.appendChild(toast);
-    
+
   setTimeout(() => toast.classList.add("show"), 50);
 
   setTimeout(() => {
@@ -255,7 +255,7 @@ function cargarListaProductos(lista) {
             </div>
             `;
     const btn = article.querySelector("button");
-    btn.addEventListener("click", () => agregarAlCarrito(producto,1));
+    btn.addEventListener("click", () => agregarAlCarrito(producto, 1));
     contenedor.appendChild(article);
   });
 }
@@ -362,6 +362,40 @@ function findProductById() {
 
   if (!container) return;
 
+  const clavesMostrar = [
+    "medidas",
+    "materiales",
+    "acabado",
+    "peso",
+    "capacidad",
+    "modulares",
+    "tapizado",
+    "confort",
+    "rotación",
+    "garantía",
+    "cargaMáxima",
+    "almacenamiento",
+    "características",
+    "colchón",
+    "estructura",
+    "relleno",
+    "sostenibilidad",
+    "extensión",
+    "apilables",
+    "incluye",
+    "cables",
+    "regulación",
+    "certificación",
+  ];
+
+  let detalles = "";
+
+  clavesMostrar.forEach((clave) => {
+    if (product[clave]) {
+      detalles += `<li>${product[clave]}</li>`;
+    }
+  });
+
   if (product) {
     container.innerHTML = `
       <img
@@ -387,10 +421,7 @@ function findProductById() {
       <div class="detalle-caracteristica">
             <h3>Caracteristicas</h3>
             <ul>
-                <li>${product.materiales}</li>
-                <li>${product.capacidad}</li>
-                <li>${product.medidas}</li>
-                <li>${product.acabado}</li>
+                ${detalles}
             </ul>
         </div>
     `;
@@ -411,7 +442,7 @@ function findProductById() {
     });
 
     btnComprar.addEventListener("click", () => {
-      agregarAlCarrito(product, count)
+      agregarAlCarrito(product, count);
     });
   } else {
     container.innerHTML = `<p class="product-not-found">No se encontró un producto con id: ${id}</p>`;
@@ -426,7 +457,7 @@ function agregarAlCarrito(producto, count) {
   if (existe) {
     if (count == 1) {
       existe.cantidad += 1;
-    }else{
+    } else {
       existe.cantidad += count;
     }
   } else {
@@ -521,22 +552,24 @@ if (cerrarVentana) {
   });
 }
 
-const productosContainer = document.querySelector('.grid');
-const primerosTres = productos.slice(0, 3)
+const productosContainer = document.querySelector(".grid");
+const primerosTres = productos.slice(0, 3);
 
-primerosTres.forEach((producto) => {
-  const li = document.createElement("li");
-  li.innerHTML = `
-    <img src="${producto.img}" alt="${producto.nombre}">
-    <h4>${producto.nombre}</h4>
-    <h3>$${producto.precio}</h3>
-    <button class="btn-comprar">Comprar</button>
-  `;
+if (productosContainer) {
+  primerosTres.forEach((producto) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <img src="${producto.img}" alt="${producto.nombre}">
+      <h4>${producto.nombre}</h4>
+      <h3>$${producto.precio}</h3>
+      <button class="btn-comprar">Comprar</button>
+    `;
 
-  const btn = li.querySelector(".btn-comprar");
-  btn.addEventListener("click", () => agregarAlCarrito(producto, 1));
+    const btn = li.querySelector(".btn-comprar");
+    btn.addEventListener("click", () => agregarAlCarrito(producto, 1));
 
-  productosContainer.appendChild(li);
-});
+    productosContainer.appendChild(li);
+  });
+}
 
 cargarCarrito();
