@@ -337,11 +337,22 @@ async function listarLosProductosFiltrados() {
 listarLosProductosFiltrados();
 
 const productList = document.getElementById("productos-list");
+const productosDestacados = document.querySelector(".grid");
 
 if (productList) {
-  document.getElementById("productos-list").addEventListener("click", (e) => {
+  productList.addEventListener("click", (e) => {
     const item = e.target.closest(".productos-item");
     if (item && !e.target.classList.contains("ver-btn")) {
+      const id = item.dataset.id;
+      const params = new URLSearchParams({ id });
+      window.location.href = "producto.html?" + params;
+    }
+  });
+}
+if (productosDestacados) {
+  productosDestacados.addEventListener("click", (e) => {
+    const item = e.target.closest("LI");
+    if (item && !e.target.classList.contains("btn-comprar")) {
       const id = item.dataset.id;
       const params = new URLSearchParams({ id });
       window.location.href = "producto.html?" + params;
@@ -558,6 +569,7 @@ const primerosTres = productos.slice(0, 3);
 if (productosContainer) {
   primerosTres.forEach((producto) => {
     const li = document.createElement("li");
+    li.dataset.id = producto.id;
     li.innerHTML = `
       <img src="${producto.img}" alt="${producto.nombre}">
       <h4>${producto.nombre}</h4>
