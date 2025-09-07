@@ -37,6 +37,11 @@ El proyecto esta deployado en **Vercel**:
 
 Desarrollado por el equipo de Hermanos Jota para el proyecto final de ITBA.
 
-## Autore
+## Autores
 
+- Jeronimo Cortez - [@JeronimoCortez](https://github.com/JeronimoCortez)
+- Nahuel Donati - [@NahuelDonatti](https://github.com/NahuelDonatti)
 - Samuel Duarte - [@samuuduarte12](https://github.com/Samuuduarte12)
+- Fausto Leal - [@faustoleal](https://github.com/faustoleal)
+- Kevin Davalos - [@KeviinDavalos](https://github.com/KeviinDavalos)
+
