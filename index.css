@@ -793,7 +793,8 @@ footer nav a {
   color: white;
   border: 0;
   font-weight: 100;
-  padding: 0.4em 2em;
+  padding: 0.4em 0.5em;
+  cursor: pointer;
   border-radius: 0.5em;
   align-self: flex-end;
   position: relative;
@@ -817,7 +818,7 @@ footer nav a {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 400px;
+  width: 350px;
   height: 100%;
   background-color: #fff;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
@@ -831,6 +832,7 @@ footer nav a {
   position: relative;
   display: inline-flex;
   align-items: center;
+  margin: 10px;
   gap: 5px;
 }
 .contador-carrito {
@@ -951,7 +953,7 @@ footer nav a {
 }
 
 .btn-pago {
-  background-color: var(--burnt-sienna);
+  background-color: var(--color-siena-tostado);
   color: white;
   border: none;
   padding: 12px;
@@ -1039,6 +1041,10 @@ footer nav a {
     align-items: center;
     justify-content: space-between;
     padding: 5px 0;
+  }
+
+  .btn-comprar {      
+    padding: 0.4em 1em;  
   }
 }
 

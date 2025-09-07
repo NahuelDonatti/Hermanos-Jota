@@ -177,7 +177,42 @@ const ventanaCarrito = document.getElementById("ventana-carrito");
 const itemsCarrito = document.getElementById("items-carrito");
 const totalCarrito = document.getElementById("total-carrito");
 const cerrarVentana = document.getElementById("cerrar-ventana");
+const notificacion = document.querySelector('#notificacion');
 const carrito = [];
+
+/* NOTIFICACION */
+function mostrarNotificacion(mensaje) {     
+  const toast = document.createElement("div");
+  toast.classList.add("toast");
+  toast.textContent = mensaje;
+  notificacion.appendChild(toast);
+    
+  setTimeout(() => toast.classList.add("show"), 50);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 500);
+  }, 5000);
+}
+
+/* LOCALSTORAGE */
+function guardarCarrito() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+function cargarCarrito() {
+  const carritoGuardado = localStorage.getItem("carrito");
+  if (carritoGuardado) {
+    carrito.splice(0, carrito.length, ...JSON.parse(carritoGuardado));
+    actualizarContador();
+    actualizarVentana();
+  }
+}
+
+// Llamar al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+  cargarCarrito();
+});
 
 function obtenerProductos() {
   return new Promise((res) => {
@@ -220,7 +255,7 @@ function cargarListaProductos(lista) {
             </div>
             `;
     const btn = article.querySelector("button");
-    btn.addEventListener("click", () => agregarAlCarrito(producto));
+    btn.addEventListener("click", () => agregarAlCarrito(producto,1));
     contenedor.appendChild(article);
   });
 }
@@ -376,9 +411,7 @@ function findProductById() {
     });
 
     btnComprar.addEventListener("click", () => {
-      carrito.push({ ...product, cantidad: count });
-      actualizarContador();
-      actualizarVentana();
+      agregarAlCarrito(product, count)
     });
   } else {
     container.innerHTML = `<p class="product-not-found">No se encontró un producto con id: ${id}</p>`;
@@ -387,21 +420,27 @@ function findProductById() {
 
 findProductById();
 
-function agregarAlCarrito(producto) {
+function agregarAlCarrito(producto, count) {
   const existe = carrito.find((item) => item.nombre === producto.nombre);
 
   if (existe) {
-    existe.cantidad += 1;
+    if (count == 1) {
+      existe.cantidad += 1;
+    }else{
+      existe.cantidad += count;
+    }
   } else {
-    carrito.push({ ...producto, cantidad: 1 });
+    carrito.push({ ...producto, cantidad: count });
   }
 
   actualizarContador();
   actualizarVentana();
+  mostrarNotificacion(`✅ Producto agregado al carrito.`);
+  guardarCarrito();
 }
 
 function actualizarContador() {
-  const totalUnidades = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+  const totalUnidades = carrito.length;
   contadorCarrito.textContent = totalUnidades;
   if (totalUnidades > 0) {
     contadorCarrito.classList.add("visible");
@@ -459,12 +498,14 @@ function cambiarCantidad(indice, count) {
   }
   actualizarContador();
   actualizarVentana();
+  guardarCarrito();
 }
 
 function eliminarProducto(indice) {
   carrito.splice(indice, 1);
   actualizarContador();
   actualizarVentana();
+  guardarCarrito();
 }
 
 // Abrir/Cerrar ventana
@@ -483,15 +524,19 @@ if (cerrarVentana) {
 const productosContainer = document.querySelector('.grid');
 const primerosTres = productos.slice(0, 3)
 
-primerosTres.forEach(producto => {
-  const productoHTML = `
-    <li>
-      <img src="${producto.img}" alt="${producto.nombre}">
-      <h4>${producto.nombre}</h4>
-      <h3>$${producto.precio}</h3>
-      <button class="btn-comprar">Comprar</button>
-    </li>
+primerosTres.forEach((producto) => {
+  const li = document.createElement("li");
+  li.innerHTML = `
+    <img src="${producto.img}" alt="${producto.nombre}">
+    <h4>${producto.nombre}</h4>
+    <h3>$${producto.precio}</h3>
+    <button class="btn-comprar">Comprar</button>
   `;
-  
-  productosContainer.innerHTML += productoHTML;
+
+  const btn = li.querySelector(".btn-comprar");
+  btn.addEventListener("click", () => agregarAlCarrito(producto, 1));
+
+  productosContainer.appendChild(li);
 });
+
+cargarCarrito();
