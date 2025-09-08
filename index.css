@@ -84,10 +84,12 @@ header > div {
 .icon-search{
   cursor: pointer;
 }
+
 .input-search{
   all:unset;
   border: 1px solid #d9d9d9;
   padding: 5px;
+  width: 150px;
   border-radius: .5rem;
 }
 
@@ -832,8 +834,8 @@ footer nav a {
   position: relative;
   display: inline-flex;
   align-items: center;
-  margin: 10px;
-  gap: 5px;
+  margin: 5px;
+  gap: 2px;
 }
 .contador-carrito {
   font-size: 18px;
@@ -1045,6 +1047,14 @@ footer nav a {
 
   .btn-comprar {      
     padding: 0.4em 1em;  
+  }
+
+  .carrito-icono {    
+    margin: 10px;    
+  }
+
+  .input-search{  
+    width: auto;  
   }
 }
 
